@@ -22,9 +22,17 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v3
 
-      - name: Add Helm repos
+      - name: Add Helm deps
         run: |
           helm dependency update charts/airbyte/ 
+
+      - name: Add Helm repos
+        run: |
+          helm repo add bitnami https://charts.bitnami.com/bitnami
+          helm repo add airbyte-bootloader https://airbytehq.github.io/helm-charts/
+          helm repo add temporal https://airbytehq.github.io/helm-charts/
+          helm repo add webapp https://airbytehq.github.io/helm-charts/
+          helm repo add server https://airbytehq.github.io/helm-charts/
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.5.0
