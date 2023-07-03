@@ -22,6 +22,10 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v3
 
+      - name: nothing
+        run: |
+          ls
+
       - name: Add Helm deps
         run: |
           helm dependency update charts/airbyte/ 
